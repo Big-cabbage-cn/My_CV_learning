@@ -205,3 +205,7 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+# 忽略数据文件夹（最重要！）
+data/
+# 忽略 Mac 系统生成的缩略图文件
+.DS_Store
