@@ -51,3 +51,33 @@ if __name__ == "__main__":
     run_inference()
 model = SimpleCNN()
 print(model)
+import torch.optim as optim
+
+def simulate_training():
+    # 1. 模拟一个正确答案（假设这张图是真的病变，标签为 1）
+    target = torch.tensor([1]) 
+    
+    # 2. 重新运行模型得到预测
+    model = SimpleCNN()
+    output = model(img_tensor) # 这里的 img_tensor 是你之前处理好的
+    
+    # 3. 定义损失函数和优化器
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.SGD(model.parameters(), lr=0.01) # 随机梯度下降
+    
+    # 4. 计算损失
+    loss = criterion(output, target)
+    print(f"当前预测与正确答案的误差 (Loss): {loss.item():.4f}")
+    
+    # 5. 执行一次反向传播（修正模型）
+    optimizer.zero_grad() # 清空旧的记忆
+    loss.backward()       # 计算该往哪儿改
+    optimizer.step()      # 真正动手改参数
+    
+    print("模型参数已根据错误完成了一次微调！")
+
+if __name__ == "__main__":
+    # 运行之前的推理
+    run_inference()
+    # 模拟学习一次
+    simulate_training()
