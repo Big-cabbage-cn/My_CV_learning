@@ -1,25 +1,33 @@
-# My_CV_learning
-My_CV_learning
-# 项目名称：基于 [模型名] 的医学影像分类
-> 这里写一句话简介，例如：本项目利用 PyTorch 实现对肺部 X 光片的自动识别。
+# My_CV_learning: MNIST 手写数字识别项目
 
----
+本项目是基于 PyTorch 实现的经典 MNIST 手写数字识别任务。通过重构，项目已实现模块化开发，支持 Apple M 系列芯片的硬件加速（MPS）。
 
-## 📸 效果展示
-![模型识别结果例子](./images/result.jpg)
-*图 1：模型对测试集图片的预测结果（红色为病灶区域）*
+## 📂 项目结构
+- `models/`: 存放 CNN 神经网络架构 (SimpleCNN)。
+- `utils/`: 存放数据处理逻辑 (MNISTDataset)。
+- `scripts/`: 存放数据可视化验证脚本。
+- `main.py`: 模型训练入口。
+- `submission.py`: 生成 Kaggle 提交文件。
+- `inference.py`: 随机抽取测试集进行推理验证。
 
----
+## 🚀 技术亮点
+- **模块化设计**：将数据、模型、脚本解耦，具备高度可扩展性。
+- **MPS 加速**：针对 MacBook Air 优化的训练流程。
+- **Kaggle 实战**：完整跑通了从原始 CSV 到最终 Submission 的全流程。
 
-## 🚀 项目功能
-* [x] 支持多种经典模型（ResNet, EfficientNet）
-* [x] 自动生成训练过程的 Loss 和 Accuracy 曲线
-* [x] 适配 Kaggle 环境，支持多 GPU 训练
+## 🛠️ 如何运行
+1. **安装依赖**：
+   ```bash
+   pip install -r requirements.txt
+2. **下载数据**：   
+   从 Kaggle 下载 MNIST 数据集，放置在 `data/` 目录下。
+3. **训练模型**
+   ```bash
+   python main.py
+4. **查看结果**：
+   ```bash
+   python inference.py
 
----
-
-## 📊 实验结果
-| 模型 | 准确率 (Accuracy) | 训练时长 | 备注 |
-| :--- | :--- | :--- | :--- |
-| ResNet50 | 92.5% | 2h | 基础版本 |
-| EfficientNet-B0 | 95.1% | 1.5h | **最终采用版本** |
+## 实验结果
+-  经过 3 个 Epoch 训练，Loss 降低至 0.004 左右。
+-  测试集预测准确率表现优秀。
